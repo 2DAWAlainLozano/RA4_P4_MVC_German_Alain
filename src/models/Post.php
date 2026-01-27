@@ -18,8 +18,18 @@ class Post {
         return $stmt->fetch();
     }
 
-    public function insert($data) {
-        $stmt = $this->db->prepare("INSERT INTO `POSTS` (`TITLE`, `CONTENT`, `ID_USER`) VALUES (?, ?, ?)");
-        return $stmt->execute([$data['title'], $data['content'], $data['user_id']]);
+    public function insert($title, $content, $userId, $imagePath = null) {
+        $stmt = $this->db->prepare("INSERT INTO `POSTS` (`TITLE`, `CONTENT`, `ID_USER`, `IMAGE_PATH`) VALUES (?, ?, ?, ?)");
+        return $stmt->execute([$title, $content, $userId, $imagePath]);
+    }
+
+    public function update($id, $title, $content) {
+        $stmt = $this->db->prepare("UPDATE `POSTS` SET `TITLE` = ?, `CONTENT` = ? WHERE `ID_POST` = ?");
+        return $stmt->execute([$title, $content, $id]);
+    }
+
+    public function delete($id) {
+        $stmt = $this->db->prepare("DELETE FROM `POSTS` WHERE `ID_POST` = ?");
+        return $stmt->execute([$id]);
     }
 }

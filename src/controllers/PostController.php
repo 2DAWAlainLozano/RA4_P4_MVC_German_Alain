@@ -39,13 +39,39 @@ class PostController {
         }
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $data = [
-                'title' => $_POST['title'] ?? '',
-                'content' => $_POST['content'] ?? '',
-                'user_id' => $_SESSION['user_id']
-            ];
+            $title = $_POST['title'] ?? '';
+            $content = $_POST['content'] ?? '';
+            $userId = $_SESSION['user_id'];
+            $imagePath = null;
 
-            if ($this->postModel->insert($data)) {
+            // Image Upload Logic
+            if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
+                $uploadDir = __DIR__ . '/../uploads/';
+                if (!is_dir($uploadDir)) {
+                    mkdir($uploadDir, 0755, true);
+                }
+
+                $fileTmpPath = $_FILES['image']['tmp_name'];
+                $fileName = basename($_FILES['image']['name']);
+                $fileSize = $_FILES['image']['size'];
+                $fileType = $_FILES['image']['type'];
+                $fileNameCmps = explode(".", $fileName);
+                $fileExtension = strtolower(end($fileNameCmps));
+
+                // Sanitize file name
+                $newFileName = md5(time() . $fileName) . '.' . $fileExtension;
+                
+                $allowedfileExtensions = array('jpg', 'gif', 'png', 'webp', 'jpeg');
+
+                if (in_array($fileExtension, $allowedfileExtensions) && $fileSize < 2 * 1024 * 1024) {
+                    $dest_path = $uploadDir . $newFileName;
+                    if(move_uploaded_file($fileTmpPath, $dest_path)) {
+                        $imagePath = 'uploads/' . $newFileName;
+                    }
+                }
+            }
+
+            if ($this->postModel->insert($title, $content, $userId, $imagePath)) {
                 header('Location: index.php?action=posts');
                 exit;
             } else {

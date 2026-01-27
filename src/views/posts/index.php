@@ -63,9 +63,9 @@
                             </div>
                         </div>
                     </div>
-                    <?php if (isset($post['IMAGE_URL'])): ?>
+                    <?php if (!empty($post['IMAGE_PATH'])): ?>
                     <div class="aspect-video overflow-hidden relative">
-                        <img src="<?= htmlspecialchars($post['IMAGE_URL']) ?>" alt="Captura" class="w-full h-full object-cover">
+                        <img src="<?= htmlspecialchars($post['IMAGE_PATH']) ?>" alt="Captura" class="w-full h-full object-cover">
                     </div>
                     <?php else: ?>
                     <div class="aspect-video bg-dark/50 flex items-center justify-center border-y border-gray-900">
