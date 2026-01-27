@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catchly - Feed</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        dark: '#050505',
+                        card: '#101010',
+                        input: '#0f1011',
+                        accent: '#22d3ee',
+                    },
+                    fontFamily: {
+                        grotesk: ['Space Grotesk', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Space Grotesk', sans-serif; }
+    </style>
+</head>
+<body class="bg-dark text-gray-200 min-h-screen flex flex-col relative overflow-hidden">
+
+    <div class="absolute inset-0 pointer-events-none">
+        <div class="w-96 h-96 bg-accent/10 blur-[120px] rounded-full absolute -top-32 -left-16"></div>
+        <div class="w-64 h-64 bg-cyan-500/10 blur-[120px] rounded-full absolute bottom-0 right-0"></div>
+    </div>
+
+    <nav class="flex items-center justify-between px-6 py-4 container mx-auto max-w-7xl relative z-10">
+        <div class="flex items-center gap-8">
+            <div class="flex items-center gap-2 text-white font-bold text-xl tracking-wide">
+                <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+                Catchly
+            </div>
+            <div class="hidden md:flex gap-6 text-sm font-semibold text-gray-500">
+                <a href="landing.html" class="hover:text-white transition">Inicio</a>
+                <a href="#" class="text-accent">Feed</a>
+                <a href="upload.html" class="hover:text-white transition">Subir</a>
+                <a href="post_view.html" class="hover:text-white transition">Capturas</a>
+            </div>
+        </div>
+        <div class="flex items-center gap-4">
+            <button class="hidden md:block bg-card border border-gray-800 text-sm font-semibold px-4 py-2 rounded-lg text-gray-400 hover:border-gray-600 hover:text-white transition">Filtros</button>
+            <div class="w-9 h-9 rounded-full bg-gray-700"></div>
+        </div>
+    </nav>
+
+    <main class="flex-grow container mx-auto px-4 pb-16 pt-4 max-w-7xl relative z-10">
+        <div class="grid grid-cols-1 xl:grid-cols-4 gap-8">
+            <aside class="space-y-6 xl:col-span-1">
+                <div class="bg-card/80 border border-gray-900 rounded-2xl p-6 backdrop-blur">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-14 h-14 rounded-full bg-gradient-to-br from-accent/60 to-cyan-500/40"></div>
+                        <div>
+                            <p class="text-xs uppercase tracking-widest text-gray-500">Tu perfil</p>
+                            <h2 class="text-white font-semibold text-lg">German Romo</h2>
+                            <p class="text-gray-500 text-sm">Barcelona, CAT</p>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-3 gap-3 text-center text-xs">
+                        <div class="bg-dark/60 rounded-lg py-3 border border-gray-900">
+                            <p class="text-gray-500 uppercase">Capturas</p>
+                            <p class="text-white text-xl font-semibold">48</p>
+                        </div>
+                        <div class="bg-dark/60 rounded-lg py-3 border border-gray-900">
+                            <p class="text-gray-500 uppercase">Seguidores</p>
+                            <p class="text-white text-xl font-semibold">2.4K</p>
+                        </div>
+                        <div class="bg-dark/60 rounded-lg py-3 border border-gray-900">
+                            <p class="text-gray-500 uppercase">Siguiendo</p>
+                            <p class="text-white text-xl font-semibold">316</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-card/80 border border-gray-900 rounded-2xl p-6 space-y-4 backdrop-blur">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-sm font-semibold text-white">Tendencias</h3>
+                        <span class="text-[10px] uppercase tracking-widest text-gray-500">Semana 04</span>
+                    </div>
+                    <div class="space-y-4 text-sm">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-white font-semibold">#LubinaReal</p>
+                                <p class="text-gray-500 text-xs">3.9K menciones</p>
+                            </div>
+                            <span class="text-accent text-xs">+18%</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-white font-semibold">#CatchAndRelease</p>
+                                <p class="text-gray-500 text-xs">2.1K menciones</p>
+                            </div>
+                            <span class="text-accent text-xs">+6%</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-white font-semibold">#Barceloneta</p>
+                                <p class="text-gray-500 text-xs">1.4K menciones</p>
+                            </div>
+                            <span class="text-accent text-xs">+12%</span>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <section class="xl:col-span-2 space-y-8">
+                <div class="bg-card/80 border border-gray-900 rounded-2xl p-6 backdrop-blur">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-full bg-gray-700"></div>
+                        <input type="text" placeholder="Comparte la captura de tu vida..." class="flex-grow bg-dark/70 border border-gray-800 rounded-full px-5 py-3 placeholder-gray-600 text-sm focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent text-white">
+                        <button class="bg-accent text-black font-semibold text-sm px-5 py-2 rounded-full hover:bg-cyan-300 transition duration-200">Publicar</button>
+                    </div>
+                </div>
+
+                <article class="bg-card/80 border border-gray-900 rounded-3xl overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.35)]">
+                    <div class="flex items-center justify-between px-6 py-5">
+                        <div class="flex items-center gap-3">
+                            <div class="w-11 h-11 rounded-full bg-gradient-to-br from-cyan-500 to-accent"></div>
+                            <div>
+                                <p class="text-white font-semibold">Sara García</p>
+                                <p class="text-gray-500 text-xs">Hace 45 min · Málaga</p>
+                            </div>
+                        </div>
+                        <span class="text-gray-600 text-xs uppercase tracking-widest">Lubina Rayada</span>
+                    </div>
+                    <div class="aspect-video overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1476215347430-17947eeb695e?q=80&w=1200&auto=format&fit=crop" alt="Lubina" class="w-full h-full object-cover">
+                        <div class="absolute top-4 left-4 bg-dark/60 backdrop-blur px-4 py-1 rounded-full text-xs font-semibold text-white uppercase tracking-widest">#CatchAndRelease</div>
+                    </div>
+                    <div class="px-6 py-6 space-y-4">
+                        <p class="text-gray-400 text-sm leading-relaxed">Luna llena, mareas vivas y una corriente perfecta. La clavé con vinilo transparente y liberé a la dama después de la foto. Qué noche.</p>
+                        <div class="grid grid-cols-3 border border-gray-800 rounded-xl overflow-hidden text-center text-xs">
+                            <div class="bg-dark/60 py-3">
+                                <p class="text-gray-500 uppercase">Peso</p>
+                                <p class="text-white text-lg font-semibold">3.1 kg</p>
+                            </div>
+                            <div class="py-3">
+                                <p class="text-gray-500 uppercase">Longitud</p>
+                                <p class="text-white text-lg font-semibold">72 cm</p>
+                            </div>
+                            <div class="bg-dark/60 py-3">
+                                <p class="text-gray-500 uppercase">Equipo</p>
+                                <p class="text-white text-lg font-semibold">Shimano Twin</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between text-xs font-semibold text-gray-500">
+                            <div class="flex items-center gap-4">
+                                <button class="flex items-center gap-1 text-white">
+                                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                                    458
+                                </button>
+                                <button class="flex items-center gap-1 hover:text-white transition">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M21 12c0 4.418-4.03 8-9 8a9.86 9.86 0 01-4-.832L3 20l1.268-3.176C3.45 15.604 3 13.853 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+                                    112
+                                </button>
+                            </div>
+                            <button class="hover:text-white transition">Guardar</button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="bg-card/80 border border-gray-900 rounded-3xl overflow-hidden">
+                    <div class="flex items-center justify-between px-6 py-5">
+                        <div class="flex items-center gap-3">
+                            <div class="w-11 h-11 rounded-full bg-gray-700"></div>
+                            <div>
+                                <p class="text-white font-semibold">Mike Fishing</p>
+                                <p class="text-gray-500 text-xs">Hace 2 h · Lisboa</p>
+                            </div>
+                        </div>
+                        <span class="text-gray-600 text-xs uppercase tracking-widest">Dorada Royale</span>
+                    </div>
+                    <div class="aspect-[4/5] overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1000&auto=format&fit=crop" alt="Dorada" class="w-full h-full object-cover hover:scale-105 transition duration-500">
+                    </div>
+                    <div class="px-6 py-6 space-y-4">
+                        <p class="text-gray-400 text-sm leading-relaxed">Puso resistencia hasta el final, pero la caña de carbono respondió. La devolví después de registrar los datos para el reto Atlántico.</p>
+                        <div class="flex flex-wrap gap-3 text-xs">
+                            <span class="px-3 py-1 rounded-full bg-dark/60 border border-gray-800 text-gray-400">#Nocturna</span>
+                            <span class="px-3 py-1 rounded-full bg-dark/60 border border-gray-800 text-gray-400">#Vinilo</span>
+                            <span class="px-3 py-1 rounded-full bg-dark/60 border border-gray-800 text-gray-400">#Lisboa</span>
+                        </div>
+                        <div class="flex items-center justify-between text-xs font-semibold text-gray-500">
+                            <div class="flex items-center gap-4">
+                                <button class="flex items-center gap-1 text-white">
+                                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                                    389
+                                </button>
+                                <button class="flex items-center gap-1 hover:text-white transition">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8h2a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2v-9a2 2 0 012-2h2"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 12v9m0-9L8 8m4 4l4-4"></path></svg>
+                                    Compartir
+                                </button>
+                            </div>
+                            <button class="hover:text-white transition">Comentarios (36)</button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="bg-gradient-to-br from-card to-card/80 border border-gray-900 rounded-3xl overflow-hidden">
+                    <div class="flex items-center justify-between px-6 py-5">
+                        <div class="flex items-center gap-3">
+                            <div class="w-11 h-11 rounded-full bg-gray-700"></div>
+                            <div>
+                                <p class="text-white font-semibold">Ayaka O.</p>
+                                <p class="text-gray-500 text-xs">Hace 5 h · Osaka</p>
+                            </div>
+                        </div>
+                        <span class="text-gray-600 text-xs uppercase tracking-widest">Carpa Koi</span>
+                    </div>
+                    <div class="grid grid-cols-2 gap-1 h-72">
+                        <img src="https://images.unsplash.com/photo-1456926631375-92c8ce872def?q=80&w=800&auto=format&fit=crop" alt="Koi" class="object-cover w-full h-full">
+                        <img src="https://images.unsplash.com/photo-1516900557549-41557f3b49dc?q=80&w=800&auto=format&fit=crop" alt="Koi" class="object-cover w-full h-full">
+                    </div>
+                    <div class="px-6 py-6 space-y-4">
+                        <p class="text-gray-400 text-sm leading-relaxed">Sesión urbana con señuelo micro jig. Las carpas del parque responden mejor con pausas largas. Obsesionada con su paleta naranja.</p>
+                        <div class="flex items-center justify-between text-xs font-semibold text-gray-500">
+                            <div class="flex items-center gap-4">
+                                <button class="flex items-center gap-1 text-white">
+                                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                                    602
+                                </button>
+                                <button class="flex items-center gap-1 hover:text-white transition">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h10m-7 4h7"></path></svg>
+                                    Guardado en 48 colecciones
+                                </button>
+                            </div>
+                            <button class="hover:text-white transition">Ver bitácora</button>
+                        </div>
+                    </div>
+                </article>
+            </section>
+
+            <aside class="space-y-6 xl:col-span-1">
+                <div class="bg-card/80 border border-gray-900 rounded-2xl p-6 backdrop-blur space-y-4">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-sm font-semibold text-white">Eventos cercanos</h3>
+                        <button class="text-xs text-accent">Ver todo</button>
+                    </div>
+                    <div class="space-y-4 text-sm">
+                        <div class="flex items-start gap-3">
+                            <div class="text-center bg-dark/80 border border-gray-800 rounded-xl px-3 py-2">
+                                <p class="text-white text-lg font-semibold">27</p>
+                                <p class="text-gray-500 text-[10px] uppercase tracking-widest">Ene</p>
+                            </div>
+                            <div>
+                                <p class="text-white font-semibold">Open Shoreline</p>
+                                <p class="text-gray-500">Barcelona · 06:00</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="text-center bg-dark/80 border border-gray-800 rounded-xl px-3 py-2">
+                                <p class="text-white text-lg font-semibold">02</p>
+                                <p class="text-gray-500 text-[10px] uppercase tracking-widest">Feb</p>
+                            </div>
+                            <div>
+                                <p class="text-white font-semibold">Reto Kayak Costa Brava</p>
+                                <p class="text-gray-500">Girona · 07:30</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-card/80 border border-gray-900 rounded-2xl p-6 backdrop-blur space-y-5">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-sm font-semibold text-white">Sugerencias</h3>
+                        <button class="text-xs text-gray-500">Actualizar</button>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-full bg-gray-700"></div>
+                                <div>
+                                    <p class="text-white text-sm font-semibold">Laia Sub</p>
+                                    <p class="text-gray-500 text-xs">Apnea · Tarragona</p>
+                                </div>
+                            </div>
+                            <button class="px-3 py-1 text-xs font-semibold border border-gray-700 rounded-full hover:border-gray-500 hover:text-white transition">Seguir</button>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-full bg-gray-700"></div>
+                                <div>
+                                    <p class="text-white text-sm font-semibold">Nico Fly</p>
+                                    <p class="text-gray-500 text-xs">Mosca · Patagonia</p>
+                                </div>
+                            </div>
+                            <button class="px-3 py-1 text-xs font-semibold border border-gray-700 rounded-full hover:border-gray-500 hover:text-white transition">Seguir</button>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-full bg-gray-700"></div>
+                                <div>
+                                    <p class="text-white text-sm font-semibold">María Drift</p>
+                                    <p class="text-gray-500 text-xs">Spinning · Cádiz</p>
+                                </div>
+                            </div>
+                            <button class="px-3 py-1 text-xs font-semibold border border-gray-700 rounded-full hover:border-gray-500 hover:text-white transition">Seguir</button>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <footer class="bg-dark border-t border-gray-900 py-10 relative z-10">
+        <div class="container mx-auto px-6 max-w-7xl flex flex-col md:flex-row justify-between items-center gap-6 text-xs text-gray-500">
+            <div class="text-left">
+                <div class="flex items-center gap-2 text-white font-bold text-lg mb-2">
+                    <svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+                    Catchly
+                </div>
+                <p class="text-xs text-gray-600 max-w-xs">La red social definitiva para los amantes de la pesca.</p>
+            </div>
+            <div class="flex gap-8 text-xs font-bold text-gray-500">
+                <a href="#" class="hover:text-white transition">Privacidad</a>
+                <a href="#" class="hover:text-white transition">Términos</a>
+                <a href="#" class="hover:text-white transition">Soporte</a>
+            </div>
+            <div class="text-xs text-gray-600">© 2024 CATCHLY</div>
+        </div>
+    </footer>
+
+</body>
+</html>

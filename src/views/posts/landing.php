@@ -1,0 +1,86 @@
+<?php include __DIR__ . '/../layout/header.php'; ?>
+
+    <section class="flex-grow flex flex-col items-center justify-center text-center px-4 py-20 md:py-32">
+        <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight leading-tight mb-8">
+            Donde la pesca <br>
+            <span class="text-accent">cobra vida</span>
+        </h1>
+        <a href="index.php?action=register" class="bg-accent text-black font-bold px-8 py-4 rounded text-lg hover:bg-cyan-300 transition duration-300">
+            Comienza gratis
+        </a>
+    </section>
+
+    <section class="bg-card border-y border-gray-900 py-24 px-4 text-center">
+        <div class="container mx-auto max-w-4xl">
+            <h2 class="text-2xl md:text-4xl font-bold mb-8">Tu próxima gran captura te espera aquí</h2>
+            <a href="index.php?action=register" class="bg-accent text-black font-bold px-8 py-4 rounded text-lg hover:bg-cyan-300 transition duration-300">
+                Crear mi cuenta gratuita
+            </a>
+        </div>
+    </section>
+
+    <section class="py-16 px-6 container mx-auto max-w-7xl">
+        
+        <div class="flex justify-between items-end mb-8">
+            <h3 class="text-2xl font-bold">Actividad reciente</h3>
+            <a href="index.php?action=login" class="text-accent text-sm font-semibold hover:underline flex items-center gap-1">
+                Explorar todo 
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+            </a>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            
+            <div class="group cursor-pointer">
+                <div class="aspect-square overflow-hidden rounded-lg bg-gray-800 mb-3 relative">
+                    <img src="https://images.unsplash.com/photo-1516684669134-de6d7c47743b?q=80&w=800&auto=format&fit=crop" alt="Carpa Koi" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    <div class="absolute inset-0 bg-black/10 group-hover:bg-transparent transition"></div>
+                </div>
+                <div class="flex justify-between items-start">
+                    <div>
+                        <h4 class="font-bold text-lg leading-none mb-1 text-white">Carpa Koi</h4>
+                        <p class="text-gray-500 text-sm">@mike_fishing</p>
+                    </div>
+                    <div class="flex items-center gap-1 text-gray-500 text-xs mt-1">
+                        <svg class="w-4 h-4 text-gray-500 fill-current" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                        124
+                    </div>
+                </div>
+            </div>
+
+            <div class="group cursor-pointer">
+                <div class="aspect-square overflow-hidden rounded-lg bg-gray-800 mb-3 relative">
+                    <img src="https://images.unsplash.com/photo-1522720833375-9c27ffb02a5e?q=80&w=800&auto=format&fit=crop" alt="Lubina" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                </div>
+                <div class="flex justify-between items-start">
+                    <div>
+                        <h4 class="font-bold text-lg leading-none mb-1 text-white">Lubina Negra</h4>
+                        <p class="text-gray-500 text-sm">@mike_fishing</p>
+                    </div>
+                    <div class="flex items-center gap-1 text-gray-500 text-xs mt-1">
+                        <svg class="w-4 h-4 text-gray-500 fill-current" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                        124
+                    </div>
+                </div>
+            </div>
+
+            <div class="group cursor-pointer">
+                <div class="aspect-square overflow-hidden rounded-lg bg-gray-800 mb-3 relative">
+                    <img src="https://images.unsplash.com/photo-1549491624-5d932d03a110?q=80&w=800&auto=format&fit=crop" alt="Nessy" class="w-full h-full object-cover grayscale contrast-125 group-hover:scale-105 transition duration-500">
+                </div>
+                <div class="flex justify-between items-start">
+                    <div>
+                        <h4 class="font-bold text-lg leading-none mb-1 text-white">Nessy</h4>
+                        <p class="text-gray-500 text-sm">@mike_fishing</p>
+                    </div>
+                    <div class="flex items-center gap-1 text-gray-500 text-xs mt-1">
+                        <svg class="w-4 h-4 text-gray-500 fill-current" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                        124
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+<?php include __DIR__ . '/../layout/footer.php'; ?>
