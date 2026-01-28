@@ -40,7 +40,7 @@
     <nav class="flex items-center justify-between px-6 py-6 container mx-auto max-w-7xl relative z-50">
         <div class="flex items-center gap-8">
             <a href="index.php?action=posts" class="flex items-center gap-2 text-white font-bold text-xl tracking-wide">
-                <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+                <img src="public/images/logo.png" alt="Catchly Logo" class="h-5 w-auto">
                 Catchly
             </a>
             <div class="hidden md:flex gap-6 text-sm font-semibold text-gray-500">
