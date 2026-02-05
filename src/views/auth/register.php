@@ -15,7 +15,9 @@
             <?php endif; ?>
 
             <form action="index.php?action=register" method="POST" class="space-y-5">
+                <input type="hidden" name="csrf_token" value="<?= \Utils\Csrf::getToken() ?>">
                 <div>
+
                     <label class="block text-xs font-bold text-gray-500 uppercase mb-2">Nombre de usuario</label>
                     <input type="text" name="name" required placeholder="@tu_usuario" class="w-full bg-input border border-gray-800 rounded-lg px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition text-sm">
                 </div>

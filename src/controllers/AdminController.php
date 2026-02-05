@@ -3,6 +3,9 @@ require_once __DIR__ . '/../config/Database.php';
 require_once __DIR__ . '/../models/User.php';
 require_once __DIR__ . '/../models/Post.php';
 require_once __DIR__ . '/../models/Comment.php';
+require_once __DIR__ . '/../utils/Csrf.php';
+use Utils\Csrf;
+
 
 class AdminController {
     private $db;
@@ -46,7 +49,11 @@ class AdminController {
     public function updateUserRole() {
         $this->requireAdmin();
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (!Csrf::validate($_POST['csrf_token'] ?? '')) {
+                die("CSRF Token invalido");
+            }
             $userId = $_POST['user_id'] ?? null;
+
             $role = $_POST['role'] ?? null;
             if ($userId && $role) {
                 $this->userModel->updateRole($userId, $role);
@@ -100,7 +107,11 @@ class AdminController {
     public function updatePost() {
         $this->requireAdmin();
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (!Csrf::validate($_POST['csrf_token'] ?? '')) {
+                die("CSRF Token invalido");
+            }
             $id = $_POST['id'] ?? null;
+
             $title = $_POST['title'] ?? '';
             $content = $_POST['content'] ?? '';
             if ($id) {

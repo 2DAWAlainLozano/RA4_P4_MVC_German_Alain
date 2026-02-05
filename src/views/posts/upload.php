@@ -8,6 +8,7 @@
         </div>
 
         <form action="index.php?action=store_post" method="POST" enctype="multipart/form-data" class="space-y-8">
+            <input type="hidden" name="csrf_token" value="<?= \Utils\Csrf::getToken() ?>">
             <div id="drop-zone" class="relative w-full h-64 border-2 border-dashed border-gray-800 rounded-xl bg-input/50 flex flex-col items-center justify-center hover:border-accent/40 hover:bg-input transition cursor-pointer group overflow-hidden">
                 <input type="file" name="image" id="image-input" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-20" accept="image/*">
                 

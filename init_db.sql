@@ -1,6 +1,5 @@
 CREATE DATABASE IF NOT EXISTS blog_db;
 USE blog_db;
-
 -- Drop existing tables to ensure new schema is applied
 DROP TABLE IF EXISTS `COMMENTS`;
 DROP TABLE IF EXISTS `POSTS`;
@@ -9,7 +8,6 @@ DROP TABLE IF EXISTS `comments`;
 DROP TABLE IF EXISTS `posts`;
 DROP TABLE IF EXISTS `users`;
 DROP TABLE IF EXISTS `categories`;
-
 -- Table USERS
 CREATE TABLE `USERS` (
     `ID_USER` INT(9) NOT NULL AUTO_INCREMENT,
@@ -20,7 +18,6 @@ CREATE TABLE `USERS` (
     `CREATED_AT` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (`ID_USER`)
 );
-
 -- Table POSTS
 CREATE TABLE `POSTS` (
     `ID_POST` INT(11) NOT NULL AUTO_INCREMENT,
@@ -31,9 +28,8 @@ CREATE TABLE `POSTS` (
     `CREATED_AT` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (`ID_POST`),
     CONSTRAINT `FK_USERS_POSTS` FOREIGN KEY (`ID_USER`) REFERENCES `USERS` (`ID_USER`) ON DELETE CASCADE,
-    FULLTEXT INDEX `FT_POSTS` (`TITLE`, `CONTENT`)
+    FULLTEXT INDEX `ft_posts_title_content` (`TITLE`, `CONTENT`)
 );
-
 -- Table COMMENTS
 CREATE TABLE `COMMENTS` (
     `ID_COMMENT` INT(10) NOT NULL AUTO_INCREMENT,
@@ -45,17 +41,32 @@ CREATE TABLE `COMMENTS` (
     CONSTRAINT `FK_USERS_COMMENTS` FOREIGN KEY (`ID_USER`) REFERENCES `USERS` (`ID_USER`) ON DELETE CASCADE,
     CONSTRAINT `FK_POSTS_COMMENTS` FOREIGN KEY (`ID_POST`) REFERENCES `POSTS` (`ID_POST`) ON DELETE CASCADE
 );
-
 -- Sample Data
 -- Password for all sample users will be 'password123' hashed
-INSERT INTO `USERS` (`NAME`, `EMAIL`, `PASSWORD`, `ROLE`) VALUES 
-('Admin', 'admin@example.com', '$2y$10$Gy8gE0btOgHv0XLFBOv3cOzRMUUav.tSD2r3lvLWZ/zugc4eLt5IK', 'admin'),
-('Writer', 'writer@example.com', '$2y$10$Gy8gE0btOgHv0XLFBOv3cOzRMUUav.tSD2r3lvLWZ/zugc4eLt5IK', 'writer');
-
-INSERT INTO `POSTS` (`TITLE`, `CONTENT`, `ID_USER`) VALUES 
-('Welcome to my blog', 'This is the first post!', 1),
-('Tech Trends 2026', 'Exploring the future of web development.', 2);
-
-INSERT INTO `COMMENTS` (`CONTENT`, `ID_USER`, `ID_POST`) VALUES 
-('Great start!', 1, 1),
-('Very interesting!', 1, 2);
+INSERT INTO `USERS` (`NAME`, `EMAIL`, `PASSWORD`, `ROLE`)
+VALUES (
+        'Admin',
+        'admin@example.com',
+        '$2y$10$Gy8gE0btOgHv0XLFBOv3cOzRMUUav.tSD2r3lvLWZ/zugc4eLt5IK',
+        'admin'
+    ),
+    (
+        'Writer',
+        'writer@example.com',
+        '$2y$10$Gy8gE0btOgHv0XLFBOv3cOzRMUUav.tSD2r3lvLWZ/zugc4eLt5IK',
+        'writer'
+    );
+INSERT INTO `POSTS` (`TITLE`, `CONTENT`, `ID_USER`)
+VALUES (
+        'Welcome to my blog',
+        'This is the first post!',
+        1
+    ),
+    (
+        'Tech Trends 2026',
+        'Exploring the future of web development.',
+        2
+    );
+INSERT INTO `COMMENTS` (`CONTENT`, `ID_USER`, `ID_POST`)
+VALUES ('Great start!', 1, 1),
+    ('Very interesting!', 1, 2);

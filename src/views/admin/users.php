@@ -40,6 +40,7 @@
                         <td class="px-6 py-4 text-sm text-gray-400"><?= htmlspecialchars($user['EMAIL']) ?></td>
                         <td class="px-6 py-4">
                             <form method="POST" action="index.php?action=admin_update_role" class="flex items-center gap-2">
+                                <input type="hidden" name="csrf_token" value="<?= \Utils\Csrf::getToken() ?>">
                                 <input type="hidden" name="user_id" value="<?= $user['ID_USER'] ?>">
                                 <select name="role" class="bg-dark border border-gray-800 rounded-lg px-3 py-1.5 text-sm text-white focus:border-accent focus:outline-none">
                                     <option value="subscriber" <?= $user['ROLE'] === 'subscriber' ? 'selected' : '' ?>>Subscriber</option>

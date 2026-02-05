@@ -43,6 +43,7 @@
 
                     <?php if (isset($_SESSION['user_id'])): ?>
                     <form action="index.php?action=add_comment" method="POST" class="mb-10">
+                        <input type="hidden" name="csrf_token" value="<?= \Utils\Csrf::getToken() ?>">
                         <input type="hidden" name="post_id" value="<?= $post['ID_POST'] ?>">
                         <div class="flex gap-4">
                             <div class="flex-grow">

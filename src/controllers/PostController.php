@@ -2,6 +2,12 @@
 require_once __DIR__ . '/../config/Database.php';
 require_once __DIR__ . '/../models/Post.php';
 require_once __DIR__ . '/../models/Comment.php';
+require_once __DIR__ . '/../utils/HttpClient.php';
+require_once __DIR__ . '/../utils/Csrf.php';
+use Utils\HttpClient;
+use Utils\Csrf;
+
+
 
 class PostController {
     private $db;
@@ -39,7 +45,11 @@ class PostController {
         }
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (!Csrf::validate($_POST['csrf_token'] ?? '')) {
+                die("CSRF Token invalido");
+            }
             $title = $_POST['title'] ?? '';
+
             $content = $_POST['content'] ?? '';
             $userId = $_SESSION['user_id'];
             $imagePath = null;
@@ -71,13 +81,34 @@ class PostController {
                 }
             }
 
-            if ($this->postModel->insert($title, $content, $userId, $imagePath)) {
+            $postId = $this->postModel->insert($title, $content, $userId, $imagePath);
+            if ($postId) {
+                $this->sendPostCreatedWebhook($postId, $title, $content, $imagePath);
                 header('Location: index.php?action=posts');
                 exit;
             } else {
                 echo "Error al guardar el post";
             }
         }
+    }
+
+    private function sendPostCreatedWebhook($postId, $title, $content, $imagePath) {
+        $url = getenv('N8N_WEBHOOK_POST_CREATED');
+        $token = getenv('N8N_SHARED_TOKEN');
+        
+        if (!$url) return;
+
+        $client = new HttpClient();
+        $client->post($url, [
+            'headers' => ['X-Shared-Token' => $token],
+            'json' => [
+                'post_id' => $postId,
+                'title' => $title,
+                'summary' => substr($content, 0, 100) . '...', // Summary as requested
+                'image' => $imagePath, // Path to image (relative) or full URL if needed
+                'user_id' => $_SESSION['user_id']
+            ]
+        ]);
     }
 
     public function show($id) {

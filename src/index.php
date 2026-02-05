@@ -21,10 +21,19 @@ require_once 'controllers/PostController.php';
 require_once 'controllers/UserController.php';
 require_once 'controllers/CommentController.php';
 require_once 'controllers/AdminController.php';
+require_once 'controllers/RagController.php';
 
 $action = $_GET['action'] ?? 'posts';
 
 switch ($action) {
+    case 'rag':
+        $controller = new RagController();
+        $controller->index();
+        break;
+    case 'rag_ask':
+        $controller = new RagController();
+        $controller->ask();
+        break;
     case 'posts':
         $controller = new PostController();
         $controller->index();

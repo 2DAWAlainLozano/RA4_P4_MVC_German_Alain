@@ -16,6 +16,7 @@
 
     <div class="bg-card/80 border border-gray-900 rounded-2xl p-8 backdrop-blur">
         <form method="POST" action="index.php?action=admin_update_post" class="space-y-6">
+            <input type="hidden" name="csrf_token" value="<?= \Utils\Csrf::getToken() ?>">
             <input type="hidden" name="id" value="<?= $post['ID_POST'] ?>">
             
             <div>

@@ -1,6 +1,12 @@
 <?php
 require_once __DIR__ . '/../config/Database.php';
 require_once __DIR__ . '/../models/Comment.php';
+require_once __DIR__ . '/../utils/HttpClient.php';
+require_once __DIR__ . '/../utils/Csrf.php';
+use Utils\HttpClient;
+use Utils\Csrf;
+
+
 
 class CommentController {
     private $db;
@@ -19,7 +25,11 @@ class CommentController {
         }
 
         $postId = $_POST['post_id'] ?? null;
+        if (!Csrf::validate($_POST['csrf_token'] ?? '')) {
+            die("CSRF Token invalido");
+        }
         $content = trim($_POST['content'] ?? '');
+
 
         if ($postId && !empty($content)) {
             $success = $this->commentModel->insert($content, $_SESSION['user_id'], $postId);
@@ -39,23 +49,14 @@ class CommentController {
         
         if (!$url) return;
 
-        $data = [
-            'post_id' => $postId,
-            'text' => $text,
-            'user_id' => $_SESSION['user_id']
-        ];
-
-        $options = [
-            'http' => [
-                'header'  => "Content-Type: application/json\r\n" .
-                             "X-Shared-Token: " . $token . "\r\n",
-                'method'  => 'POST',
-                'content' => json_encode($data),
-                'ignore_errors' => true
+        $client = new HttpClient();
+        $client->post($url, [
+            'headers' => ['X-Shared-Token' => $token],
+            'json' => [
+                'post_id' => $postId,
+                'text' => $text,
+                'user_id' => $_SESSION['user_id']
             ]
-        ];
-
-        $context  = stream_context_create($options);
-        @file_get_contents($url, false, $context);
+        ]);
     }
 }

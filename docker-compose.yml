@@ -3,7 +3,7 @@ services:
     build: ./src
     container_name: web-catchly
     ports:
-      - "8080:80"
+      - "8010:80"
     volumes:
       - ./src:/var/www/html
     environment:
@@ -11,6 +11,9 @@ services:
       - MYSQL_DATABASE=blog_db
       - MYSQL_USER=blog_user
       - MYSQL_PASSWORD=blog_pass
+      - N8N_WEBHOOK_POST_CREATED=http://n8n:5678/webhook/post-created
+      - N8N_WEBHOOK_COMMENT_CREATED=http://n8n:5678/webhook/comment-created
+      - N8N_SHARED_TOKEN=super_secure_shared_token_123
     depends_on:
       - db
     restart: unless-stopped
@@ -30,6 +33,23 @@ services:
       - ./init_db.sql:/docker-entrypoint-initdb.d/init_db.sql
     restart: unless-stopped
 
+
+  n8n:
+    image: n8nio/n8n
+    container_name: n8n
+    ports:
+      - "5678:5678"
+    environment:
+      - N8N_BASIC_AUTH_ACTIVE=true
+      - N8N_BASIC_AUTH_USER=admin
+      - N8N_BASIC_AUTH_PASSWORD=password
+      - GENERIC_TIMEZONE=Europe/Madrid
+      - TZ=Europe/Madrid
+    volumes:
+      - n8n_data:/home/node/.n8n
+    restart: unless-stopped
+
 volumes:
   db_data:
+  n8n_data:
 

@@ -20,7 +20,10 @@ class Post {
 
     public function insert($title, $content, $userId, $imagePath = null) {
         $stmt = $this->db->prepare("INSERT INTO `POSTS` (`TITLE`, `CONTENT`, `ID_USER`, `IMAGE_PATH`) VALUES (?, ?, ?, ?)");
-        return $stmt->execute([$title, $content, $userId, $imagePath]);
+        if ($stmt->execute([$title, $content, $userId, $imagePath])) {
+            return $this->db->lastInsertId();
+        }
+        return false;
     }
 
     public function update($id, $title, $content) {

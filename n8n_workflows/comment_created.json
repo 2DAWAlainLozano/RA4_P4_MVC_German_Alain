@@ -1,0 +1,132 @@
+{
+    "name": "Comment Created Workflow",
+    "nodes": [
+        {
+            "parameters": {
+                "httpMethod": "POST",
+                "path": "comment-created",
+                "options": {}
+            },
+            "name": "Webhook",
+            "type": "n8n-nodes-base.webhook",
+            "typeVersion": 1,
+            "position": [
+                250,
+                300
+            ]
+        },
+        {
+            "parameters": {
+                "conditions": {
+                    "string": [
+                        {
+                            "value1": "={{$node[\"Webhook\"].json[\"headers\"][\"x-shared-token\"]}}",
+                            "value2": "super_secure_shared_token_123"
+                        }
+                    ]
+                }
+            },
+            "name": "Validate Token",
+            "type": "n8n-nodes-base.if",
+            "typeVersion": 1,
+            "position": [
+                450,
+                300
+            ]
+        },
+        {
+            "parameters": {
+                "message": "Authorized Comment Created Webhook Received",
+                "level": "info"
+            },
+            "name": "Log Success",
+            "type": "n8n-nodes-base.noOp",
+            "typeVersion": 1,
+            "position": [
+                650,
+                200
+            ]
+        },
+        {
+            "parameters": {
+                "message": "Unauthorized Access Attempt",
+                "level": "warning"
+            },
+            "name": "Log Failure",
+            "type": "n8n-nodes-base.noOp",
+            "typeVersion": 1,
+            "position": [
+                650,
+                400
+            ]
+        },
+        {
+            "parameters": {
+                "method": "POST",
+                "url": "https://ntfy.sh/alain_mvc_notifications",
+                "bodyParameters": {
+                    "parameters": [
+                        {
+                            "name": "title",
+                            "value": "={{$node[\"Webhook\"].json[\"body\"][\"title\"]}}"
+                        },
+                        {
+                            "name": "message",
+                            "value": "={{$node[\"Webhook\"].json[\"body\"][\"summary\"]}}"
+                        }
+                    ]
+                },
+                "options": {}
+            },
+            "name": "Send to ntfy",
+            "type": "n8n-nodes-base.httpRequest",
+            "typeVersion": 1,
+            "position": [
+                850,
+                200
+            ]
+        }
+    ],
+    "connections": {
+        "Webhook": {
+            "main": [
+                [
+                    {
+                        "node": "Validate Token",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Validate Token": {
+            "main": [
+                [
+                    {
+                        "node": "Log Success",
+                        "type": "main",
+                        "index": 0
+                    }
+                ],
+                [
+                    {
+                        "node": "Log Failure",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Log Success": {
+            "main": [
+                [
+                    {
+                        "node": "Send to ntfy",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        }
+    }
+}
