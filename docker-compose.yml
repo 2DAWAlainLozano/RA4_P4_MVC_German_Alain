@@ -18,6 +18,24 @@ services:
       - db
     restart: unless-stopped
 
+  laravel:
+    build: ./laravel
+    container_name: laravel_app
+    ports:
+      - "8020:80"
+    volumes:
+      - ./laravel:/var/www/html
+    environment:
+      - DB_CONNECTION=mysql
+      - DB_HOST=db
+      - DB_PORT=3306
+      - DB_DATABASE=blog_db
+      - DB_USERNAME=blog_user
+      - DB_PASSWORD=blog_pass
+    depends_on:
+      - db
+    restart: unless-stopped
+
   db:
     image: mysql:8.0
     container_name: blog_db_container
@@ -32,7 +50,6 @@ services:
       - db_data:/var/lib/mysql
       - ./init_db.sql:/docker-entrypoint-initdb.d/init_db.sql
     restart: unless-stopped
-
 
   n8n:
     image: n8nio/n8n
@@ -52,4 +69,3 @@ services:
 volumes:
   db_data:
   n8n_data:
-
